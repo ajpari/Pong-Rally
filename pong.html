@@ -4,12 +4,13 @@
 <title>Pong Rally</title>
 </head>
 <body style="-webkit-user-select: none; margin-top:100px; background-color:#999; position:fixed; top:0; bottom:0; left:0; right:0; height:100%; width:100%:">
-
+		<span style="color:white; font-size:35px; font-family:Arial;">Multiplier: x</span><span id="scoreMultiplier" style="font-size:35px; font-family:Arial; color:white;">0</span>
+<br>
 	<span style="color:white; font-size:35px; font-family:Arial;">Score: </span><span id="score" style="font-size:35px; font-family:Arial; color:white;">0</span>
 <br>
 
 
-<div id ="buttons" style="display:inline-block; width:900px; margin-left:360px; margin-top:30px; position:fixed;">
+<div id ="buttons" style="display:inline-block; width:900px; margin-left:390px; margin-top:-150px; position:fixed;">
 	<button onclick="gameDifficulty(easy,huge);" style="background:black;border:none; color:white; width:20%; font-size:20px; height:36px; margin-top:5px;">Easy</button>
 	<button onclick="gameDifficulty(normal,large);" style="background:black; border:none;color:white; width:20%; font-size:20px; height:36px; margin-top:5px;">Normal</button>
 	<button onclick="gameDifficulty(hard,medium);" style="background:black; border:none;color:white; width:20%; font-size:20px; height:36px; margin-top:5px;">Hard</button>
@@ -22,7 +23,7 @@
 <div id ="container" style="width:2000px;" ></div>
 	<canvas id="gameCanvas" style="margin-top:-80px;padding-right: 0; margin-left:350px; display: block;  width: 800px;" width="800" height="500">
 	</canvas> 
-	<div id = "scoreboard" style="border-radius:10px; text-align:center; position:relative; font-family:Arial; font-size:40px; margin-top:-100px;height:100px; width:250px; background:lime;">
+	<div id = "scoreboard" style="border-radius:10px; text-align:center; position:relative; font-family:Arial; font-size:40px; margin-top:-400px;height:100px; width:250px; background:lime;">
 		<span>Highscore</span>	
 		<br>
 		<span id="highscore1">0</span>
@@ -61,7 +62,8 @@ var huge = 200;
 
 var increase = 0;
 
-var score = 0;
+var scoreMultiplier = 1;
+var score = 0 >> 0;
 var highscore =  localStorage.getItem("highscore") || 0;
 var displayHigh = document.getElementById('highscore1');
 
@@ -102,12 +104,14 @@ function resetBall() {
 
 	
 
-	
+	scoreMultiplier = 1;
 	score = 0;
 }
 
 function gameScore() {
-	document.getElementById('score').innerHTML = score;
+	
+	document.getElementById('score').innerHTML = Math.floor(score);
+	document.getElementById('scoreMultiplier').innerHTML = scoreMultiplier;
 }
 function gameDifficulty(level, size) {
 	  
@@ -175,19 +179,21 @@ function moveBall() {
 	if (ballX <= 10 + PADDLE_THICKNESS) {
 		if(ballY < paddle1Y + paddleHeight && ballY > paddle1Y){ // if ball is on paddle
 			ballSpeedX = -ballSpeedX; // bounce
+			scoreMultiplier += 0.01;
 			if(ballSpeedX == easy){
-				score += easyScore;
+				score += easyScore* scoreMultiplier;
 				}
 			if(ballSpeedX == normal){
-				score += normalScore;
+				score += normalScore* scoreMultiplier;
 				}
 			if(ballSpeedX == hard) {
-				score += hardScore;
+				score += hardScore* scoreMultiplier;
 				}
 			if(ballSpeedX == insane) {
-				score += insaneScore;
+				score += insaneScore* scoreMultiplier;
 			}
-			increase += 0.1;
+			
+			
 	//ballY < paddle1Y + paddleHeight && ballY > paddle1Y
 	
 		if(ballX <= 0) {
