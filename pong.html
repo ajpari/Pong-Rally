@@ -102,7 +102,7 @@ function resetBall() {
 	
 
 	scoreMultiplier = 1;
-	increase = 1;
+	PADDLE_HEIGHT = 100;
 	score = 0;
 }
 
@@ -177,8 +177,7 @@ function moveBall() {
 		if(ballY < paddle1Y + PADDLE_HEIGHT && ballY > paddle1Y){ // if ball is on paddle
 			ballSpeedX = -ballSpeedX; // bounce
 			scoreMultiplier += 0.01;
-			increase = scoreMultiplier
-			PADDLE_HEIGHT = PADDLE_HEIGHT * increase; 
+			PADDLE_HEIGHT = PADDLE_HEIGHT * scoreMultiplier; 
 			
 			if(ballSpeedX == easy){
 				score += easyScore* scoreMultiplier;
