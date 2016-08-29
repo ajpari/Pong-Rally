@@ -57,14 +57,14 @@ var insaneScore = 1000;
 
 
 
-var increase = 0;
+var increase = 1;
 
 var scoreMultiplier = 1;
-var score = 0 >> 0;
+var score = 0;
 var highscore =  localStorage.getItem("highscore") || 0;
 var displayHigh = document.getElementById('highscore1');
 
-const PADDLE_HEIGHT = 100;	
+var PADDLE_HEIGHT = 100;	
 const PADDLE_THICKNESS = 15;
 
 
@@ -102,6 +102,7 @@ function resetBall() {
 	
 
 	scoreMultiplier = 1;
+	increase = 1;
 	score = 0;
 }
 
@@ -176,6 +177,9 @@ function moveBall() {
 		if(ballY < paddle1Y + PADDLE_HEIGHT && ballY > paddle1Y){ // if ball is on paddle
 			ballSpeedX = -ballSpeedX; // bounce
 			scoreMultiplier += 0.01;
+			increase = scoreMultiplier
+			PADDLE_HEIGHT = PADDLE_HEIGHT * increase; 
+			
 			if(ballSpeedX == easy){
 				score += easyScore* scoreMultiplier;
 				}
