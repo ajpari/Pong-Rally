@@ -175,20 +175,20 @@ function moveBall() {
 	if (ballX <= 10 + PADDLE_THICKNESS) {
 		if(ballY < paddle1Y + PADDLE_HEIGHT && ballY > paddle1Y){ // if ball is on paddle
 			ballSpeedX = -ballSpeedX; // bounce
-			scoreMultiplier += 0.01;
+			scoreMultiplier += 0.01* scoreMultiplier;
 			
 			
 			if(ballSpeedX == easy){
-				score += easyScore* scoreMultiplier* scoreMultiplier;
+				score += easyScore* scoreMultiplier*;
 				}
 			if(ballSpeedX == normal){
-				score += normalScore* scoreMultiplier* scoreMultiplier;
+				score += normalScore* scoreMultiplier;
 				}
 			if(ballSpeedX == hard) {
-				score += hardScore* scoreMultiplier* scoreMultiplier;
+				score += hardScore* scoreMultiplier;
 				}
 			if(ballSpeedX == insane) {
-				score += insaneScore* scoreMultiplier * scoreMultiplier;
+				score += insaneScore* scoreMultiplier;
 			}
 			
 			
