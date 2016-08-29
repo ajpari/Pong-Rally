@@ -64,7 +64,7 @@ var score = 0 >> 0;
 var highscore =  localStorage.getItem("highscore") || 0;
 var displayHigh = document.getElementById('highscore1');
 
-const PADDLE_HEIGHT = 150;	
+const PADDLE_HEIGHT = 100;	
 const PADDLE_THICKNESS = 15;
 
 
@@ -150,11 +150,11 @@ window.onload = function() {
 	canvas.addEventListener('mousemove',
 			function(evt) {
 					var mousePos = calculateMousePos(evt);
-					paddle1Y = mousePos.y-(paddleHeight/2);
+					paddle1Y = mousePos.y-(PADDLE_HEIGHT/2);
 		});
 	
 	function bot() {
-	paddle2Y = ballY - paddleHeight/2;
+	paddle2Y = ballY - PADDLE_HEIGHT/2;
 	}
 	
 }
@@ -173,7 +173,7 @@ function moveBall() {
 		resetBall();
 	}
 	if (ballX <= 10 + PADDLE_THICKNESS) {
-		if(ballY < paddle1Y + paddleHeight && ballY > paddle1Y){ // if ball is on paddle
+		if(ballY < paddle1Y + PADDLE_HEIGHT && ballY > paddle1Y){ // if ball is on paddle
 			ballSpeedX = -ballSpeedX; // bounce
 			scoreMultiplier += 0.01;
 			if(ballSpeedX == easy){
@@ -198,7 +198,7 @@ function moveBall() {
 	}
 }
 	if(ballX >= canvas.width-15 - PADDLE_THICKNESS) {
-		if(ballY < paddle2Y + paddleHeight && ballY > paddle2Y){
+		if(ballY < paddle2Y + PADDLE_HEIGHT && ballY > paddle2Y){
 			ballSpeedX = -ballSpeedX;
 		
 		}
@@ -218,10 +218,10 @@ function drawGame() {
 	colorRect(0,0,canvas.width,canvas.height,'darkblue'); 
 	
 	// left paddle
-	colorRect(0,paddle1Y,PADDLE_THICKNESS,paddleHeight,'red');
+	colorRect(0,paddle1Y,PADDLE_THICKNESS,PADDLE_HEIGHT,'red');
 	
 	// right paddle
-	colorRect(canvas.width-15,paddle2Y,PADDLE_THICKNESS,paddleHeight,'red');
+	colorRect(canvas.width-15,paddle2Y,PADDLE_THICKNESS,PADDLE_HEIGHT,'red');
 	
 	// middle line
 	colorRect(canvas.width/2,0,5,canvas.height,'white');
