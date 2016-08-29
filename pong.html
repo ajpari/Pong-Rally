@@ -11,10 +11,10 @@
 
 
 <div id ="buttons" style="display:inline-block; width:900px; margin-left:390px; margin-top:-150px; position:fixed;">
-	<button onclick="gameDifficulty(easy,huge);" style="background:black;border:none; color:white; width:20%; font-size:20px; height:36px; margin-top:5px;">Easy</button>
-	<button onclick="gameDifficulty(normal,large);" style="background:black; border:none;color:white; width:20%; font-size:20px; height:36px; margin-top:5px;">Normal</button>
-	<button onclick="gameDifficulty(hard,medium);" style="background:black; border:none;color:white; width:20%; font-size:20px; height:36px; margin-top:5px;">Hard</button>
-	<button onclick="gameDifficulty(insane,small);" style="background:black;border:none; color:white; width:20%;  font-size:20px; height:36px; margin-top:5px;">Insane</button>
+	<button onclick="gameDifficulty(easy);" style="background:black;border:none; color:white; width:20%; font-size:20px; height:36px; margin-top:5px;">Easy</button>
+	<button onclick="gameDifficulty(normal);" style="background:black; border:none;color:white; width:20%; font-size:20px; height:36px; margin-top:5px;">Normal</button>
+	<button onclick="gameDifficulty(hard);" style="background:black; border:none;color:white; width:20%; font-size:20px; height:36px; margin-top:5px;">Hard</button>
+	<button onclick="gameDifficulty(insane);" style="background:black;border:none; color:white; width:20%;  font-size:20px; height:36px; margin-top:5px;">Insane</button>
 </div>
 
 
@@ -55,10 +55,7 @@ var normalScore = 50;
 var hardScore = 200;
 var insaneScore = 1000;
 
-var small = 50;
-var medium = 100;
-var large = 150;
-var huge = 200;
+
 
 var increase = 0;
 
@@ -67,7 +64,7 @@ var score = 0 >> 0;
 var highscore =  localStorage.getItem("highscore") || 0;
 var displayHigh = document.getElementById('highscore1');
 
-var paddleHeight = 150;	
+const PADDLE_HEIGHT = 150;	
 const PADDLE_THICKNESS = 15;
 
 
@@ -113,10 +110,9 @@ function gameScore() {
 	document.getElementById('score').innerHTML = Math.floor(score);
 	document.getElementById('scoreMultiplier').innerHTML = scoreMultiplier;
 }
-function gameDifficulty(level, size) {
+function gameDifficulty(level) {
 	  
-	  ballSpeedX = level;
-	  paddleHeight = size + increase; // increases paddleHeight when difficulty is changed
+	  ballSpeedX = level; 
 }
 
 
